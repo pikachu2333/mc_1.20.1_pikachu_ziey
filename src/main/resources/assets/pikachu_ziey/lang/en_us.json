@@ -1,4 +1,6 @@
 {
   "item.pikachu_ziey.pikachu": "piakchu",
-  "item.pikachu_ziey.pikachu_raw": "piakchu_raw"
+  "item.pikachu_ziey.pikachu_raw": "piakchu_raw",
+  "block.pikachu_ziey.pikachu_block": "piakchu_block",
+  "block.pikachu_ziey.raw_pikachu_block": "raw_piakchu_block"
 }

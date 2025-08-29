@@ -1,5 +1,6 @@
 package com.example.pikachu_ziey;
 
+import com.example.pikachu_ziey.block.ModBlocks;
 import com.example.pikachu_ziey.item.ModItemGroups;
 import com.example.pikachu_ziey.item.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -23,6 +24,7 @@ public class Pikachu_ziey implements ModInitializer {
 
 		ModItems.registerModItems();
 		ModItemGroups.registerGroups();
+		ModBlocks.registerModBlocks();
 		LOGGER.info("Hello Fabric world!");
 	}
 }

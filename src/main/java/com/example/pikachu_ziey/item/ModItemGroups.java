@@ -1,6 +1,7 @@
 package com.example.pikachu_ziey.item;
 
 import com.example.pikachu_ziey.Pikachu_ziey;
+import com.example.pikachu_ziey.block.ModBlocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -16,6 +17,18 @@ public class ModItemGroups {
     private static RegistryKey<ItemGroup> register(String id) {
         return RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(Pikachu_ziey.MOD_ID, id));
     }
+    public static final ItemGroup TUTORIAL_GROUP2 = Registry.register(
+            Registries.ITEM_GROUP,
+            new Identifier(Pikachu_ziey.MOD_ID, "tutorial_group2"),
+            ItemGroup.create(null, -1)
+                    .displayName(Text.translatable("itemGroup.tutorial_group2"))
+                    .icon(() -> new ItemStack(ModItems.Pikachu))
+                    .entries((displayContext, entries) -> {
+//                        entries.add(ModItems.Pikachu);
+//                        entries.add(ModItems.Pikachuraw);
+//                        entries.add(ModBlocks.PIKACHU_BLOCK);
+//                        entries.add(ModBlocks.RAW_PIKACHU_BLOCK);
+                    }).build());
 
     public static void registerGroups() {
         Registry.register(
@@ -27,6 +40,8 @@ public class ModItemGroups {
                         .entries((displayContext, entries) -> {
                             entries.add(ModItems.Pikachu);
                             entries.add(ModItems.Pikachuraw);
+                            entries.add(ModBlocks.PIKACHU_BLOCK);
+                            entries.add(ModBlocks.RAW_PIKACHU_BLOCK);
                         }).build());
     }
 
