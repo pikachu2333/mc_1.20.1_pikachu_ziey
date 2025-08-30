@@ -17,17 +17,15 @@ public class ModItemGroups {
     private static RegistryKey<ItemGroup> register(String id) {
         return RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(Pikachu_ziey.MOD_ID, id));
     }
-    public static final ItemGroup TUTORIAL_GROUP2 = Registry.register(
+    public static final ItemGroup PIKACHU_ZIEY_BLOCK_GROUP = Registry.register(
             Registries.ITEM_GROUP,
-            new Identifier(Pikachu_ziey.MOD_ID, "tutorial_group2"),
+            new Identifier(Pikachu_ziey.MOD_ID, "pikachu_ziey_block_group"),
             ItemGroup.create(null, -1)
-                    .displayName(Text.translatable("itemGroup.tutorial_group2"))
+                    .displayName(Text.translatable("itemGroup.Pikachu_ziey_block_group"))
                     .icon(() -> new ItemStack(ModItems.Pikachu))
                     .entries((displayContext, entries) -> {
-//                        entries.add(ModItems.Pikachu);
-//                        entries.add(ModItems.Pikachuraw);
-//                        entries.add(ModBlocks.PIKACHU_BLOCK);
-//                        entries.add(ModBlocks.RAW_PIKACHU_BLOCK);
+                        entries.add(ModBlocks.PIKACHU_BLOCK);
+                        entries.add(ModBlocks.RAW_PIKACHU_BLOCK);
                     }).build());
 
     public static void registerGroups() {
@@ -40,8 +38,7 @@ public class ModItemGroups {
                         .entries((displayContext, entries) -> {
                             entries.add(ModItems.Pikachu);
                             entries.add(ModItems.Pikachuraw);
-                            entries.add(ModBlocks.PIKACHU_BLOCK);
-                            entries.add(ModBlocks.RAW_PIKACHU_BLOCK);
+
                         }).build());
     }
 
