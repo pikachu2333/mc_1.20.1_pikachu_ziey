@@ -13,8 +13,8 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
 
-    public static final Item Pikachu = registerItem("pikachu", new Item(new Item.Settings()));
-    public static final Item Pikachuraw = registerItem("pikachu_raw", new Item(new Item.Settings()));
+    public static final Item Pikachu = registerItem("pikachu", new Item(new Item.Settings().food(ModFoodComponents.pikachu)));
+    public static final Item Pikachuraw = registerItem("pikachu_raw", new Item(new Item.Settings().food(ModFoodComponents.pikachu_raw)));
 
 //    public static Item registerItems(String id, Item item) {
 //        return Registry.register(Registries.ITEM, RegistryKey.of(Registries.ITEM.getKey(), new Identifier(Pikachu_ziey.MOD_ID, id)),item);
@@ -48,7 +48,7 @@ public class ModItems {
     }
 
     public static void registerModItems() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(ModItems::addItemToItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(ModItems::addItemToItemGroup);
 
 
     }

@@ -4,7 +4,7 @@
   "group": "Pikachu_ziey_group",
   "key": {
     "#": {
-      "item": "minecraft:gold_block"
+      "item": "minecraft:yellow_dye"
     },
     "A": {
       "item": "minecraft:apple"
@@ -16,7 +16,7 @@
     "###"
   ],
   "result": {
-    "item": "pikachu_ziey:pikachu"
+    "item": "pikachu_ziey:pikachu_raw"
   },
   "show_notification": true
 }
