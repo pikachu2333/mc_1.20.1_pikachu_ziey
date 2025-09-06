@@ -3,7 +3,10 @@
 	"package": "com.example.pikachu_ziey.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"EntityMixin"
+	],
+	"client": [
+		"EntityMountedOffsetMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

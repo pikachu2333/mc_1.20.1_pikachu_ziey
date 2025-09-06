@@ -1,11 +1,11 @@
 package com.example.pikachu_ziey;
 
+
 import com.example.pikachu_ziey.block.ModBlocks;
 import com.example.pikachu_ziey.item.ModItemGroups;
 import com.example.pikachu_ziey.item.ModItems;
 import com.example.pikachu_ziey.teleportbook.networking.TeleportBookNetworking;
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +27,7 @@ public class Pikachu_ziey implements ModInitializer {
 		ModItemGroups.registerGroups();
 		ModBlocks.registerModBlocks();
 		TeleportBookNetworking.register();
+		new com.example.pikachu_ziey.PiggyBackMod().onInitialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }

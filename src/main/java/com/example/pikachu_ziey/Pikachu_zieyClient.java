@@ -26,6 +26,8 @@ public class Pikachu_zieyClient implements ClientModInitializer {
                         }
                     });
                 }
+
         );
+
     }
 }
