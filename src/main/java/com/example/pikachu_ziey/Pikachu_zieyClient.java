@@ -16,6 +16,7 @@ public class Pikachu_zieyClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientPlayNetworking.registerGlobalReceiver(
+
                 TeleportBookNetworking.SYNC_LIST,
                 (client, handler, buf, responseSender) -> {
                     List<Waypoint> newList = buf.readList(b -> Waypoint.fromNbt(Objects.requireNonNull(b.readNbt())));
