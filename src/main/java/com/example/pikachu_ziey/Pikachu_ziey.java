@@ -27,7 +27,7 @@ public class Pikachu_ziey implements ModInitializer {
 		ModItemGroups.registerGroups();
 		ModBlocks.registerModBlocks();
 		TeleportBookNetworking.register();
-		new com.example.pikachu_ziey.PiggyBackMod().onInitialize();
+		new com.example.pikachu_ziey.Player.PiggyBackMod().onInitialize();
 		LOGGER.info("Hello Fabric world!");
 	}
 }

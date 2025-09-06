@@ -1,4 +1,4 @@
-package com.example.pikachu_ziey;
+package com.example.pikachu_ziey.Player;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
@@ -20,9 +20,19 @@ public class PiggyBackMod implements ModInitializer {
             if (!(entity instanceof PlayerEntity target)) return ActionResult.PASS;
             if (player.isSpectator() || !player.getStackInHand(hand).isEmpty()) return ActionResult.PASS;
 
-            if (player.isSneaking()) {          // 脱离
+            if (player.isSneaking()) {
+                PlayerEntity vehicle = (PlayerEntity) player.getVehicle();
                 player.stopRiding();
-                syncPassengers(target);
+                if (vehicle != null) {
+                    syncPassengers(vehicle);        // 全员第一时间收到
+                    // 底座玩家再补发两帧
+                    if (vehicle instanceof ServerPlayerEntity svc) {
+                        svc.networkHandler.sendPacket(new EntityPassengersSetS2CPacket(vehicle));
+                        svc.getServer().execute(() ->
+                                svc.networkHandler.sendPacket(new EntityPassengersSetS2CPacket(vehicle))
+                        );
+                    }
+                }
                 return ActionResult.SUCCESS;
             }
 
@@ -36,16 +46,22 @@ public class PiggyBackMod implements ModInitializer {
     }
 
     /* 广播乘客列表 + 打/清 tag */
-    private static void syncPassengers(PlayerEntity base) {
-        EntityPassengersSetS2CPacket packet = new EntityPassengersSetS2CPacket(base);
-        ServerWorld sw = (ServerWorld) base.getWorld();
+    /* 广播乘客列表 + 打/清 tag */
+    private static void syncPassengers(PlayerEntity vehicle) {
+        EntityPassengersSetS2CPacket packet = new EntityPassengersSetS2CPacket(vehicle);
+        ServerWorld sw = (ServerWorld) vehicle.getWorld();
         sw.getServer().getPlayerManager().getPlayerList()
                 .forEach(p -> p.networkHandler.sendPacket(packet));
+        // 局域网/单人主机有时不在列表里，再强行发一次
+        if (vehicle instanceof ServerPlayerEntity svc) {
+            svc.networkHandler.sendPacket(packet);
+        }
 
-        /* 1.20.1 只有 getScoreboardTags()，没有 add/remove 方法 */
-        if (base.getPassengerList().isEmpty())
-            base.getCommandTags().remove("piggyback_base");
-        else
-            base.getCommandTags().add("piggyback_base");
+        if (vehicle.getPassengerList().isEmpty()) {
+            vehicle.getCommandTags().remove("piggyback_base");
+        } else {
+            if (!vehicle.getCommandTags().contains("piggyback_base"))
+                vehicle.getCommandTags().add("piggyback_base");
+        }
     }
 }
